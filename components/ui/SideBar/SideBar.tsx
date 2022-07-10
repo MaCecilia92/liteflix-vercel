@@ -15,11 +15,6 @@ import Image from "next/image";
 import Notificacion from "../../../components/Icons/Notificacion";
 import { UiContext } from "../../../context/index";
 
-interface propsSidebar {
-  Anchor?: "right" | "top";
-  Open?: boolean;
-}
-
 export const SideBar = () => {
   const { openSideBarDesktop, closeSideBar, Anchor, Open } =
     useContext(UiContext);
@@ -30,7 +25,7 @@ export const SideBar = () => {
   return (
     <div>
       <Fragment>
-        <Button onClick={openSideBarDesktop}></Button>
+        <Button onClick={openSideBarDesktop}>Open Sidebar</Button>
         <Drawer anchor={Anchor} open={Open} onClose={closeSideBar}>
           <Box
             sx={{

@@ -1,26 +1,27 @@
 import * as React from "react";
 
-const SvgPlayIcon = (props) => (
+const SvgPlayIconHover = (props) => (
   <svg
-    width={40}
-    height={40}
+    width={24}
+    height={24}
     fill='none'
     xmlns='http://www.w3.org/2000/svg'
     {...props}>
     <circle
-      cx={20}
-      cy={20}
-      r={19.5}
-      fill='#242424'
-      fillOpacity={0.5}
-      stroke='#fff'
+      cx={12}
+      cy={12}
+      r={11.5}
+      fill={props.fillcircle}
+      stroke={props.strokecircle}
     />
     <path
+      fillRule='evenodd'
       clipRule='evenodd'
-      d='M26.648 20.27 16 13v14l10.648-6.73Z'
-      stroke='#fff'
+      d='M15.99 12.162 9.6 7.8v8.4l6.39-4.038Z'
+      fill={props.fillpath}
+      stroke={props.strokepath}
     />
   </svg>
 );
 
-export default SvgPlayIcon;
+export default SvgPlayIconHover;

@@ -11,7 +11,7 @@ import MenuSVG from "../../../components/Icons/Menu";
 
 export const MenuDesktop = () => {
   return (
-    <AppBar position='static' sx={{ mt: 2 }}>
+    <AppBar position='fixed' sx={{ mt: 2 }}>
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
           <Box sx={{ display: { xs: "none", md: "flex", sm: "flex" }, mr: 5 }}>

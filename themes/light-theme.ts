@@ -1,3 +1,4 @@
+import { BorderBottom, BorderRight, BorderTop } from '@mui/icons-material';
 import { createTheme } from '@mui/material/styles';
 //import { red,  } from '@mui/material/colors';
 
@@ -47,8 +48,8 @@ export const lightTheme = createTheme({
       styleOverrides: {
         h1: {
           fontSize: 30,
-          fontWeight: 400, 
-          letterSpacing: 10
+          fontWeight: 400,
+          letterSpacing: 4
         },
         h2: {
           fontSize: 16,
@@ -93,9 +94,12 @@ export const lightTheme = createTheme({
     MuiPaper: {
       styleOverrides: {
         root: {
-          backgroundColor: 'rgba(36, 36, 36 )',
-        }
-      }
+          backgroundColor: 'transparent',
+          borderRadius: 0,
+          padding: 0,
+          boxShadow:"none"
+        },
+      },
     },
 
 
@@ -106,10 +110,37 @@ export const lightTheme = createTheme({
       styleOverrides: {
         root: {
           boxShadow: '0px 5px 5px rgba(0,0,0,0.05)',
-          borderRadius: '10px',
+          borderRadius: '10px'
+        }
+      }
+    },
+
+    MuiInput: {
+
+      styleOverrides: {
+        root: {
+          color: 'white',
+          ":hover": {
+            color:"white"
+          },
+          ":before": {
+            borderBottom: "1px solid white"
+          },
+          ":hover:not(.Mui-disabled):before":{
+            borderBottom: "3px solid white"
+          }
+        }
+      }
+    },
+    
+    MuiLinearProgress: {
+      
+      styleOverrides: {
+        root: {
+          backgroundColor: 'rgba(255, 255, 255, 0.5)',
+          height:10
         }
       }
     }
-    
   }
 });
