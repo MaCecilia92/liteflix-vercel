@@ -18,7 +18,6 @@ export const CardMovieHover: FC = () => {
           width: 220,
           height: 140,
           pt: 6,
-          borderRadius: 2,
         }}>
         <CardActions
           sx={{ mt: 2, color: "white" }}

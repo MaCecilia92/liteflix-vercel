@@ -5,15 +5,18 @@ import { ThemeProvider } from "@mui/material/styles";
 
 import { lightTheme } from "../themes";
 import { UiProvider } from "../context/index";
+import { MovieProvider } from "../context/Data/index";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <UiProvider>
-      <ThemeProvider theme={lightTheme}>
-        <CssBaseline />
-        <Component {...pageProps} />
-      </ThemeProvider>
-    </UiProvider>
+    <MovieProvider>
+      <UiProvider>
+        <ThemeProvider theme={lightTheme}>
+          <CssBaseline />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </UiProvider>
+    </MovieProvider>
   );
 }
 

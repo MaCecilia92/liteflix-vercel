@@ -102,6 +102,14 @@ export const lightTheme = createTheme({
       },
     },
 
+    MuiPopover: {
+      styleOverrides: {
+        root: {
+          left: -20,
+        },
+      },
+    },
+
 
     MuiCard: {
       defaultProps: {
@@ -110,7 +118,7 @@ export const lightTheme = createTheme({
       styleOverrides: {
         root: {
           boxShadow: '0px 5px 5px rgba(0,0,0,0.05)',
-          borderRadius: '10px'
+          borderRadius: '4px'
         }
       }
     },
@@ -129,6 +137,22 @@ export const lightTheme = createTheme({
           ":hover:not(.Mui-disabled):before":{
             borderBottom: "3px solid white"
           }
+        }
+      }
+    },
+
+    MuiListItem : {
+      styleOverrides: {
+        root: {
+          flex:"0 0 0",
+        }
+      }
+    },
+
+    MuiList : {
+      styleOverrides: {
+        root: {
+          paddingTop: 13
         }
       }
     },

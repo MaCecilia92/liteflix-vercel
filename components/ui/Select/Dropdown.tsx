@@ -14,7 +14,6 @@ const options = ["Populares", "Mis películas"];
 export const Dropdown = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [selectedIndex, setSelectedIndex] = useState(0);
-  //   const [tick, setTick] = useState(false);
   const open = Boolean(anchorEl);
   const handleClickListItem = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -26,7 +25,6 @@ export const Dropdown = () => {
   ) => {
     setSelectedIndex(index);
     setAnchorEl(null);
-    // setTick(true);
   };
 
   const handleClose = () => {
@@ -34,32 +32,27 @@ export const Dropdown = () => {
   };
 
   return (
-    <div>
-      <List component='nav' aria-label='Device settings'>
-        <ListItem
-          button
-          id='lock-button'
-          aria-haspopup='listbox'
-          aria-controls='lock-menu'
-          aria-label='when device is locked'
-          aria-expanded={open ? "true" : undefined}
-          onClick={handleClickListItem}
-          sx={{
-            width: "70%",
-          }}>
+    <>
+      <List>
+        <ListItem onClick={handleClickListItem}>
           <Typography
             variant='h2'
             sx={{
-              fontSize: "1.5rem",
+              fontSize: "18px",
               fontWeight: 200,
               marginRight: "20px",
               color: "white",
             }}>
             Ver
           </Typography>
-          <ListItemText sx={{ width: "10rem", fontSize: "2rem" }}>
+          <ListItemText sx={{ width: "5rem" }}>
             <Typography
-              sx={{ fontSize: "1.5rem", fontWeight: 600, color: "white" }}>
+              sx={{
+                fontSize: "1.2rem",
+                fontWeight: 600,
+                color: "white",
+                letterSpacing: 1,
+              }}>
               {options[selectedIndex]}
             </Typography>
           </ListItemText>
@@ -75,6 +68,7 @@ export const Dropdown = () => {
           "aria-labelledby": "lock-button",
           role: "listbox",
         }}
+        disableScrollLock
         sx={{ bgcolor: "transparent" }}>
         <Box
           sx={{
@@ -109,6 +103,6 @@ export const Dropdown = () => {
           ))}
         </Box>
       </Menu>
-    </div>
+    </>
   );
 };

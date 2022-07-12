@@ -10,7 +10,7 @@ export const CardMovieSmall: FC = () => {
   return (
     <>
       <Card
-        sx={{ width: 220, position: "relative" }}
+        sx={{ width: 220, position: "relative", margin: 4 }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}>
         <CardMedia

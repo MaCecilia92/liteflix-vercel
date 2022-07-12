@@ -16,6 +16,7 @@ export const CardMovie: FC = () => {
           height: 140,
           textAlign: "center",
           pt: 5,
+          borderRadius: 4,
         }}>
         <PlayIcon />
         <Typography

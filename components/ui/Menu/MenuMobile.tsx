@@ -10,7 +10,7 @@ import MenuSVG from "../../Icons/Menu";
 
 export const MenuMobile = () => {
   return (
-    <AppBar position='static' sx={{ mt: 2 }}>
+    <AppBar position='fixed' sx={{ mt: 2 }}>
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
           <Box sx={{ mr: 2 }}>
