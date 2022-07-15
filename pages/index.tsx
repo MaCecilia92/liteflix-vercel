@@ -21,7 +21,6 @@ const HomePage: NextPage = () => {
             overflowX: "hidden",
             paddingTop: "190px",
             paddingBottom: 20,
-            mb: 20,
             "::-webkit-scrollbar": {
               display: "block",
             },
@@ -39,6 +38,7 @@ const HomePage: NextPage = () => {
               alignItems: "center",
               zIndex: 4,
               paddingTop: 0,
+              paddingBottom: 0,
             },
           }}>
           <Dropdown />
