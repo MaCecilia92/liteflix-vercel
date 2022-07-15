@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { UpLoadLinearProgress } from "./UpLoadLinearProgress";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import { Typography } from "@mui/material";
 
 export interface UpLoadProgressBarProps {
   file: File;
@@ -20,16 +21,35 @@ export const UpLoadProgressBar = ({
     async function upload() {
       const url = await uploadFile(file, setProgress);
       onUpload(file, url);
-      console.log("url", url);
     }
     upload();
   }, []);
+
+  console.log("progres", progress);
 
   return (
     <>
       <Box sx={{ width: "100%" }}>
         <UpLoadLinearProgress value={progress} />
-        <Button onClick={() => onDelete(file)}>Cancelar</Button>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "flex-end",
+            alignContent: "flex-end",
+          }}>
+          {progress === 100 ? (
+            <Typography
+              sx={{ color: "#64EEBC", fontSize: "18px", letterSpacing: 4 }}>
+              ¡Listo!
+            </Typography>
+          ) : (
+            <Button
+              onClick={() => onDelete(file)}
+              sx={{ fontSize: "18px", letterSpacing: 4, color: "white" }}>
+              Cancelar
+            </Button>
+          )}
+        </Box>
       </Box>
     </>
   );

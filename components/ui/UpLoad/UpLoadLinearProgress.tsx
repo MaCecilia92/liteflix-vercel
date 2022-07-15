@@ -9,7 +9,20 @@ export const UpLoadLinearProgress = (
   props: LinearProgressProps & { value: number }
 ) => {
   return (
-    <Box sx={{ display: "flex", alignItems: "center" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
+      }}>
+      <Box sx={{ minWidth: 35 }}>
+        <Typography
+          variant='body2'
+          color='text.secondary'
+          sx={{ color: "white", mb: 1, letterSpacing: 4, fontSize: "16px" }}>
+          Cargando {`${Math.round(props.value)}%`}
+        </Typography>
+      </Box>
       <Box sx={{ width: "100%", mr: 1 }}>
         <LinearProgress
           variant='determinate'
@@ -24,14 +37,6 @@ export const UpLoadLinearProgress = (
             },
           }}
         />
-      </Box>
-      <Box sx={{ minWidth: 35 }}>
-        <Typography
-          variant='body2'
-          color='text.secondary'
-          sx={{ color: "white" }}>
-          Cargando {`${Math.round(props.value)}%`}
-        </Typography>
       </Box>
     </Box>
   );
