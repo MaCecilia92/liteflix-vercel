@@ -9,6 +9,7 @@ import { propsdropdown } from "../Select";
 export const CardMovieHover: FC<propsdropdown> = ({
   movieVote,
   movieTitle,
+  year,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -57,16 +58,23 @@ export const CardMovieHover: FC<propsdropdown> = ({
             justifyContent: "center",
             alignContent: "space-between",
           }}>
-          <StarIcon sx={{ color: "#64EEBC", fontSize: 16 }} />
-          <Typography
-            variant='h2'
-            component='div'
-            sx={{ color: "white", flexGrow: 1, ml: 1 }}>
-            {movieVote}
-          </Typography>
-          <Typography variant='h2' component='div' sx={{ color: "white" }}>
-            2008
-          </Typography>
+          {movieVote ? (
+            <>
+              <StarIcon sx={{ color: "#64EEBC", fontSize: 16 }} />
+              <Typography
+                variant='h2'
+                component='div'
+                sx={{ color: "white", flexGrow: 1, ml: 1 }}>
+                {movieVote}
+              </Typography>
+            </>
+          ) : null}
+
+          {year ? (
+            <Typography variant='h2' component='div' sx={{ color: "white" }}>
+              {year}
+            </Typography>
+          ) : null}
         </CardActions>
       </CardContent>
     </>

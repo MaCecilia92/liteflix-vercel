@@ -1,4 +1,11 @@
-import React, { useCallback, useState, useRef, useEffect, FC } from "react";
+import React, {
+  useCallback,
+  useState,
+  useRef,
+  useEffect,
+  FC,
+  useContext,
+} from "react";
 import { useDropzone, FileRejection, FileError } from "react-dropzone";
 import { UpLoadProgressBar } from "./UpLoadProgressBar";
 import File from "../../Icons/File";
@@ -9,6 +16,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { Typography } from "@mui/material";
 import { UpLoadFileOk } from "./index";
+import { UiContext } from "../../../context/Ui";
 
 export interface UploadableFile {
   id?: number;
@@ -22,6 +30,8 @@ export interface movies {
   title?: string;
   titleName?: string;
   modalsButtons?: {};
+  handleClose?: () => void;
+  closeDrawer?: () => void;
 }
 
 const modalButtons = {
@@ -31,9 +41,8 @@ const modalButtons = {
   fontSize: 18,
   borderRadius: 0,
   letterSpacing: 4,
+  mb: 2,
   textAlign: "center",
-  position: "absolute",
-  bottom: 50,
   ":disabled": {
     bgcolor: "#b8b6b6",
   },
@@ -43,15 +52,40 @@ const modalButtons = {
   },
 };
 
+const secondaryButton = {
+  bgcolor: "transparent",
+  width: 248,
+  height: 56,
+  fontSize: 18,
+  borderRadius: 0,
+  letterSpacing: 4,
+  color: "white",
+  mb: 2,
+  textAlign: "center",
+  border: "1px solid white",
+  ":disabled": {
+    bgcolor: "#b8b6b6",
+  },
+  ":hover": {
+    bgcolor: "#FFFFFF",
+    color: "black",
+  },
+};
+
 const TypographyTitle = {
   fontSize: 22,
   textAlign: "center",
   color: "#64EEBC",
+  mb: 5,
 };
 
 const modalButtonsContainer = {
   display: "flex",
   justifyContent: "center",
+  "@media screen and (max-width:599px)": {
+    flexDirection: "column",
+    alignItems: "center",
+  },
 };
 
 let currentId = 0;
@@ -63,7 +97,10 @@ function getNewId() {
 export const UploadFile: FC<movies> = ({
   titleName,
   modalsButtons,
+  handleClose,
+  closeDrawer,
 }): JSX.Element => {
+  const { toggleContainer, isMenuOpen } = useContext(UiContext);
   const [files, setFiles] = useState<UploadableFile[]>([]);
   const ariaLabel = { "aria-label": "description" };
   const [movie, setMovie] = useState<movies>({});
@@ -130,8 +167,36 @@ export const UploadFile: FC<movies> = ({
     localStorage.setItem("movieArray", JSON.stringify(oldArray));
   }, [movie, setMovie, setValue]);
 
+  const buttonsContainer = isMenuOpen ? (
+    <Button onClick={toggleContainer} sx={secondaryButton}>
+      Salir
+    </Button>
+  ) : null;
+
+  const textContainer = isMenuOpen ? (
+    <Typography
+      sx={{
+        fontSize: 16,
+        letterSpacing: 2,
+        color: "white",
+        m: 5,
+      }}>
+      Agregá un archivo
+    </Typography>
+  ) : (
+    <Typography
+      sx={{
+        fontSize: 16,
+        letterSpacing: 2,
+        color: "white",
+        m: 5,
+      }}>
+      Agregá un archivo o arrastralo y soltalo aquí
+    </Typography>
+  );
+
   const ProgressBarContainer = !files.length ? (
-    <Grid item>
+    <Box>
       <Box
         sx={{
           display: "flex",
@@ -139,23 +204,14 @@ export const UploadFile: FC<movies> = ({
           alignContent: "center",
           height: "5rem",
           alignItems: "center",
-          m: "2rem",
-          border: "2px white dashed",
+          border: "1px white dashed",
         }}
         {...getRootProps()}>
         <input {...getInputProps()} />
         <File />
-        <Typography
-          sx={{
-            fontSize: 16,
-            letterSpacing: 2,
-            color: "white",
-            m: 5,
-          }}>
-          Agregá un archivo o arrastralo y soltalo aquí{" "}
-        </Typography>
+        {textContainer}
       </Box>
-    </Grid>
+    </Box>
   ) : (
     files.map((fileWrapper) => (
       <Grid item key={fileWrapper.id}>
@@ -176,13 +232,10 @@ export const UploadFile: FC<movies> = ({
     ))
   );
 
-  console.log("movies", movie);
-  console.log(input);
-  console.log("FILES", files);
   return (
     <>
       {!view ? (
-        <Grid>
+        <Box>
           <Typography
             id='modal-modal-title'
             variant='h1'
@@ -221,15 +274,20 @@ export const UploadFile: FC<movies> = ({
 
           <Box sx={modalButtonsContainer}>
             <Button
-              disabled={!value}
+              disabled={!value || !files.length}
               onClick={() => handleClick(files)}
               sx={modalButtons}>
               Subir película
             </Button>
+            {buttonsContainer}
           </Box>
-        </Grid>
+        </Box>
       ) : (
-        <UpLoadFileOk titleName={value} modalsButtons={modalButtons} />
+        <UpLoadFileOk
+          titleName={value}
+          modalsButtons={modalButtons}
+          handleClose={handleClose}
+        />
       )}
     </>
   );

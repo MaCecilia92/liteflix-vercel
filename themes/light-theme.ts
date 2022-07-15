@@ -48,7 +48,7 @@ export const lightTheme = createTheme({
       styleOverrides: {
         root: {
           "@media screen and (max-width:599px)": {
-            backgroundColor: 'transparent',
+            display: "none"
           },
           
         },
@@ -58,6 +58,10 @@ export const lightTheme = createTheme({
     MuiTypography: {
 
       styleOverrides: {
+        root: {
+          padding: 0,
+        },
+
         h1: {
           fontSize: 30,
           fontWeight: 400,
@@ -180,7 +184,7 @@ export const lightTheme = createTheme({
     MuiList : {
       styleOverrides: {
         root: {
-          paddingTop: 13
+          paddingTop: 13,
         }
       }
     },

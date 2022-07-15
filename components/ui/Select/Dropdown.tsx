@@ -16,36 +16,17 @@ import { MovieFromLocalstorageContext } from "../../../context/MovieLocal/index"
 
 const options = ["Populares", "Mis películas"];
 
-// export interface movieProps {
-//   Listmovies?: [];
-// }
-export interface Welcome {
-  dates: Date;
-  page: number;
-  results: Result[];
-  total_pages: number;
-  total_results: number;
-}
-
 export interface Result {
-  adult?: boolean;
   backdrop_path?: string;
-  genre_ids?: number[];
   id?: number;
-  original_title?: string;
-  overview?: string;
-  popularity?: number;
-  poster_path?: string;
   release_date?: string;
   title?: string;
-  video?: boolean;
+  image?: string;
   vote_average?: number;
-  vote_count?: number;
 }
 
 export interface propsdropdown {
-  results?: Welcome;
-  Listmovies?: Welcome;
+  Listmovies?: Result[];
   movieVote?: [] | number;
   movieTitle?: [] | string;
   year?: [] | string;
@@ -60,16 +41,14 @@ export const Dropdown: FC<propsdropdown> = ({ Listmovies }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const open = Boolean(anchorEl);
-  const { useMovies } = useMovieContext();
-  const { movies, isLoading } = useMovies("/now_playing");
   const [localMovie, setlocalMovie] = useState(false);
 
-  const {
-    movieLocalstorage,
-    base64ToFile,
-    getMovieLocalstorage,
-    setMovieLocalstorage,
-  } = useContext(MovieFromLocalstorageContext) as propsMovieLocal;
+  const { useMovies } = useMovieContext();
+  const { movies, isLoading } = useMovies("/now_playing");
+
+  const { movieLocalstorage, getMovieLocalstorage } = useContext(
+    MovieFromLocalstorageContext
+  ) as propsMovieLocal;
 
   const handleClickListItem = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -81,42 +60,16 @@ export const Dropdown: FC<propsdropdown> = ({ Listmovies }) => {
   ) => {
     setSelectedIndex(index);
     setAnchorEl(null);
-    setlocalMovie(true);
+    setlocalMovie(!selectedIndex);
   };
 
   const handleClose = () => {
     setAnchorEl(null);
   };
 
-  console.log("movies", movies);
-
-  // const base64ToFile = (base64data, fileName) => {
-  //   const bs = atob(base64data);
-  //   const buffer = new ArrayBuffer(bs.length);
-  //   const ba = new Uint8Array(buffer);
-  //   for (let i = 0; i < bs.length; i++) {
-  //     ba[i] = bs.charCodeAt(i);
-  //   }
-  //   return new File([ba], fileName);
-  // };
-
-  // const getMovieLocalstorage = useCallback(() => {
-  //   const data = JSON.parse(localStorage.getItem("movieArray") || "[]");
-  //   setMovieLocalstorage(
-  //     data?.map((movie) => {
-  //       const base64Image = base64ToFile(movie.image, movie.title);
-  //       movie.image = URL.createObjectURL(
-  //         new Blob([base64Image], { type: "application/zip" })
-  //       );
-  //       console.log("movie1234", movie);
-  //       return movie;
-  //     })
-  //   );
-  // }, []);
-
-  // useEffect(() => {
-  //   getMovieLocalstorage();
-  // }, [localMovie]);
+  useEffect(() => {
+    getMovieLocalstorage();
+  }, [localMovie]);
 
   return (
     <>
@@ -124,10 +77,7 @@ export const Dropdown: FC<propsdropdown> = ({ Listmovies }) => {
         <ListItem
           onClick={handleClickListItem}
           sx={{
-            width: "90%",
-            "@media screen and (max-width:599px)": {
-              width: "100%",
-            },
+            width: "15rem",
           }}>
           <Typography
             variant='h2'
@@ -197,7 +147,9 @@ export const Dropdown: FC<propsdropdown> = ({ Listmovies }) => {
           ))}
         </Box>
       </Menu>
-      <CardMovieSmall Listmovies={movies} />
+      <CardMovieSmall
+        Listmovies={selectedIndex ? movieLocalstorage : movies?.results ?? []}
+      />
     </>
   );
 };

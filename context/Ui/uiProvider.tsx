@@ -4,6 +4,7 @@ import { UiContext, uiReducer } from "../Ui/index";
 export interface propsSidebar {
   Anchor?: "right" | "top";
   Open?: boolean;
+  isMenuOpen?: boolean;
 }
 export interface props {
   children?: React.ReactNode;
@@ -12,6 +13,7 @@ export interface props {
 const UI_INITIAL_STATE: propsSidebar = {
   Anchor: "right",
   Open: false,
+  isMenuOpen: false,
 };
 
 export const UiProvider: FC<props> = ({ children }) => {
@@ -29,15 +31,19 @@ export const UiProvider: FC<props> = ({ children }) => {
     dispatch({ type: "[UI] - closeSideBar" });
   };
 
+  const toggleContainer = () => {
+    dispatch({ type: "[UI] - ToggleContainer" });
+  };
+
   return (
     <UiContext.Provider
       value={{
         ...state,
-
         // Methods
         openSideBarDesktop,
         openSideBarMobile,
         closeSideBar,
+        toggleContainer,
       }}>
       {children}
     </UiContext.Provider>

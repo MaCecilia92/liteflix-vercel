@@ -13,14 +13,32 @@ import Button from "@mui/material/Button";
 import { SideBar } from "../SideBar";
 import CloseIcon from "@mui/icons-material/Close";
 
+const MenumobileOpen = "#242424";
+const MenumobileClose = "transparent";
+
 export const MenuMobile: FC<menuProps> = ({}) => {
-  const { openSideBarMobile, Anchor, Open } = useContext(UiContext);
+  const { openSideBarMobile, Anchor, Open, closeSideBar, isMenuOpen } =
+    useContext(UiContext);
 
-  const MenumobileOpen = "#242424";
+  const MenuButtons = Open ? (
+    isMenuOpen ? (
+      <Button
+        startIcon={<MenuSVG sx={{ color: "white", width: 30, height: 30 }} />}
+        onClick={openSideBarMobile}
+      />
+    ) : (
+      <Button
+        startIcon={<CloseIcon sx={{ color: "white", width: 30, height: 30 }} />}
+        onClick={closeSideBar}
+      />
+    )
+  ) : (
+    <Button
+      startIcon={<MenuSVG sx={{ color: "white", width: 30, height: 30 }} />}
+      onClick={openSideBarMobile}
+    />
+  );
 
-  const MenumobileClose = "transparent";
-
-  const MenuBackground = Open ? MenumobileOpen : MenumobileClose;
   return (
     <AppBar
       position='fixed'
@@ -32,16 +50,7 @@ export const MenuMobile: FC<menuProps> = ({}) => {
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
           <Box>
-            <Button
-              startIcon={
-                Open ? (
-                  <CloseIcon sx={{ color: "white", width: 30, height: 30 }} />
-                ) : (
-                  <MenuSVG />
-                )
-              }
-              onClick={openSideBarMobile}
-            />
+            {MenuButtons}
             <SideBar anchor={Anchor} open={Open} />
           </Box>
           <Box sx={{ m: "auto" }}>

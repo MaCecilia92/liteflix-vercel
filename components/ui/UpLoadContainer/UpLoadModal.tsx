@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState, useContext } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
@@ -8,9 +8,11 @@ import IconButton from "@mui/material/IconButton";
 import { UploadFile } from "../UpLoad/UploadFile";
 import { ContextProps } from "../../../context/Ui/index";
 import AddIcon from "@mui/icons-material/Add";
+import { propsMovieLocal } from "../../../context/MovieLocal";
+import { MovieFromLocalstorageContext } from "../../../context/MovieLocal/index";
 
 const modalContainer = {
-  position: "absolute" as "absolute",
+  position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
@@ -52,15 +54,36 @@ const inputTitle = {
 export const UpLoadModal: FC<ContextProps> = (): JSX.Element => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    getMovieLocalstorage();
+  };
   const ariaLabel = { "aria-label": "description" };
+
+  const { getMovieLocalstorage } = useContext(
+    MovieFromLocalstorageContext
+  ) as propsMovieLocal;
 
   return (
     <>
       <Button
-        startIcon={<AddIcon sx={{ color: "white", width: 20, height: 20 }} />}
+        startIcon={
+          <AddIcon
+            sx={{
+              color: "white",
+              width: 20,
+              height: 20,
+            }}
+          />
+        }
         onClick={handleOpen}
-        sx={{ width: "20rem" }}>
+        sx={{
+          width: "20rem",
+          display: "flex",
+          justifyContent: "flex-start",
+          mt: 3,
+          mb: 3,
+        }}>
         <Typography sx={{ color: "white", fontSize: 22, letterSpacing: 3 }}>
           Agregar película
         </Typography>
@@ -77,7 +100,7 @@ export const UpLoadModal: FC<ContextProps> = (): JSX.Element => {
             </IconButton>
           </Box>
           <Box sx={{ flexGrow: 1 }}></Box>
-          <UploadFile />
+          <UploadFile handleClose={handleClose} />
         </Box>
       </Modal>
     </>

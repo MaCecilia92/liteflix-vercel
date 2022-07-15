@@ -4,6 +4,7 @@ type UiActionType =
    | { type: '[UI] - openSideBarDesktop' } 
    | { type: '[UI] - openSideBarMobile' } 
    | { type: '[UI] - closeSideBar' } 
+   | { type: '[UI] - ToggleContainer' }
 
 
 export const uiReducer = ( state: propsSidebar, action: UiActionType ): propsSidebar => {
@@ -32,7 +33,13 @@ export const uiReducer = ( state: propsSidebar, action: UiActionType ): propsSid
 
          }
       
+         case '[UI] - ToggleContainer':
+            return {
+               ...state,
+               isMenuOpen: !state.isMenuOpen
 
+         }
+      
        default:
           return state;
    }

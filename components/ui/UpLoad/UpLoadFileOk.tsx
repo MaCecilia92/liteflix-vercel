@@ -1,15 +1,29 @@
-import { FC } from "react";
-import Grid from "@mui/material/Grid";
+import { FC, useContext } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { Typography } from "@mui/material";
 import LogoLiteflix from "../../../components/Icons/LiteflixLogo";
 import { movies } from "../../../components/ui/UpLoad/index";
+import { UiContext } from "../../../context/Ui/index";
+import { propsMovieLocal } from "../../../context/MovieLocal";
+import { MovieFromLocalstorageContext } from "../../../context/MovieLocal/index";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 export const UpLoadFileOk: FC<movies> = ({
   titleName,
   modalsButtons,
+  handleClose,
 }): JSX.Element => {
+  const breakpoints = useMediaQuery("(max-width:600px)");
+  const { toggleContainer, isMenuOpen } = useContext(UiContext);
+  const { getMovieLocalstorage } = useContext(
+    MovieFromLocalstorageContext
+  ) as propsMovieLocal;
+
+  const closeDrawer = () => {
+    toggleContainer();
+    getMovieLocalstorage;
+  };
   return (
     <>
       <Box
@@ -39,7 +53,11 @@ export const UpLoadFileOk: FC<movies> = ({
             {titleName} fue correctamente subida.
           </Typography>
         </Box>
-        <Button sx={modalsButtons}> ir a home</Button>
+        <Button
+          sx={modalsButtons}
+          onClick={breakpoints ? closeDrawer : handleClose}>
+          Salir
+        </Button>
       </Box>
     </>
   );

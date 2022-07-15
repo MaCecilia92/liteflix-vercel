@@ -24,6 +24,18 @@ const useMovies = (url: string, config: SWRConfiguration = {}) => {
     `https://api.themoviedb.org/3/movie${url}?api_key=${API_KEY}${language}`,
     fetcher
   );
+
+  const slides = data?.results.reduce((acc, movie, idx) => {
+    if (idx < 5) {
+      acc.push({
+        id: idx,
+        title: movie.title,
+        url: movie.poster_path,
+      });
+    }
+    return acc;
+  }, []);
+
   return {
     movies: data,
     isLoading: !error && !data,

@@ -47,21 +47,18 @@ export const MovieLocalProvider: FC<props> = ({ children }) => {
     return new File([ba], fileName);
   };
 
-  const getMovieLocalstorage = () => {
-    useCallback(() => {
-      const data = JSON.parse(localStorage.getItem("movieArray") || "[]");
-      setMovieLocalstorage(
-        data?.map((movie) => {
-          const base64Image = base64ToFile(movie.image, movie.title);
-          movie.image = URL.createObjectURL(
-            new Blob([base64Image], { type: "application/zip" })
-          );
-          console.log("movie1234", movie);
-          return movie;
-        })
-      );
-    }, []);
-  };
+  const getMovieLocalstorage = useCallback(() => {
+    const data = JSON.parse(localStorage.getItem("movieArray") || "[]");
+    setMovieLocalstorage(
+      data?.map((movie) => {
+        const base64Image = base64ToFile(movie.image, movie.title);
+        movie.image = URL.createObjectURL(
+          new Blob([base64Image], { type: "application/zip" })
+        );
+        return movie;
+      })
+    );
+  }, []);
 
   return (
     <MovieFromLocalstorageContext.Provider

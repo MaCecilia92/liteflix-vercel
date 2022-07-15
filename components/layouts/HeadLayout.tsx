@@ -15,7 +15,6 @@ interface Props {
 
 export const HeadLayout: FC<Props> = ({ children, title }) => {
   const breakpoints = useMediaQuery("(max-width:600px)");
-  console.log("breakpoint", breakpoints);
   return (
     <>
       <Head>
