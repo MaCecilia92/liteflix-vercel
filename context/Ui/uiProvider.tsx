@@ -1,5 +1,5 @@
-import { FC, useReducer, useState } from "react";
-import { UiContext, uiReducer } from "./index";
+import { FC, useReducer } from "react";
+import { UiContext, uiReducer } from "../Ui/index";
 
 export interface propsSidebar {
   Anchor?: "right" | "top";
@@ -33,6 +33,7 @@ export const UiProvider: FC<props> = ({ children }) => {
     <UiContext.Provider
       value={{
         ...state,
+
         // Methods
         openSideBarDesktop,
         openSideBarMobile,

@@ -1,13 +1,12 @@
-import React from "react";
+import { FC, useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
-import Input from "@mui/material/Input";
-import { Form, Formik } from "formik";
-import { MultipleFileUploadFile } from "../UpLoad/MultipleFileUploadFile";
+import { UploadFile } from "../UpLoad/UploadFile";
+import { ContextProps } from "../../../context/Ui/index";
 
 const modalContainer = {
   position: "absolute" as "absolute",
@@ -35,12 +34,6 @@ const modalButtonsContainer = {
   justifyContent: "center",
 };
 
-const TypographyTitle = {
-  fontSize: 22,
-  textAlign: "center",
-  color: "#64EEBC",
-};
-
 const closeContainer = {
   display: "flex",
   justifyContent: "flex-end",
@@ -55,8 +48,8 @@ const inputTitle = {
   borderColor: "white !important",
 };
 
-export const UpLoadModal = () => {
-  const [open, setOpen] = React.useState(false);
+export const UpLoadModal: FC<ContextProps> = (): JSX.Element => {
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const ariaLabel = { "aria-label": "description" };
@@ -75,38 +68,8 @@ export const UpLoadModal = () => {
               <CloseIcon sx={{ color: "white" }} />
             </IconButton>
           </Box>
-          <Typography
-            id='modal-modal-title'
-            variant='h1'
-            component='h1'
-            sx={TypographyTitle}>
-            Agregar película
-          </Typography>
-
           <Box sx={{ flexGrow: 1 }}></Box>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              "& > :not(style)": { m: 1 },
-            }}>
-            <Formik initialValues={{}} onSubmit={() => {}}>
-              {({ values, errors }) => (
-                <Form>
-                  <MultipleFileUploadFile />
-                </Form>
-              )}
-            </Formik>
-
-            <Input
-              placeholder='Título'
-              inputProps={ariaLabel}
-              sx={inputTitle}
-            />
-          </Box>
-          <Box sx={modalButtonsContainer}>
-            <Button sx={modalButtons}>Subir película</Button>
-          </Box>
+          <UploadFile />
         </Box>
       </Modal>
     </div>

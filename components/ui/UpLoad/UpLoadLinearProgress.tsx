@@ -5,11 +5,6 @@ import LinearProgress, {
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
-const LinearProgressContainer = {
-  bgcolor: "#64EEBC",
-  height: 4,
-};
-
 export const UpLoadLinearProgress = (
   props: LinearProgressProps & { value: number }
 ) => {

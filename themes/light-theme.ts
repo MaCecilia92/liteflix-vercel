@@ -128,6 +128,7 @@ export const lightTheme = createTheme({
       styleOverrides: {
         root: {
           color: 'white',
+    
           ":hover": {
             color:"white"
           },
@@ -144,7 +145,9 @@ export const lightTheme = createTheme({
     MuiListItem : {
       styleOverrides: {
         root: {
-          flex:"0 0 0",
+          flex: "0 0 0",
+          width: "15rem", 
+          paddingLeft: "41px"
         }
       }
     },

@@ -1,4 +1,4 @@
-import { propsSidebar } from './index';
+import { propsSidebar } from '../Ui/index';
 
 type UiActionType = 
    | { type: '[UI] - openSideBarDesktop' } 
@@ -7,8 +7,7 @@ type UiActionType =
 
 
 export const uiReducer = ( state: propsSidebar, action: UiActionType ): propsSidebar => {
-   console.log("prev", state),
-   console.log("action", action)
+
    switch (action.type) { 
       case '[UI] - openSideBarDesktop':
          
@@ -31,7 +30,8 @@ export const uiReducer = ( state: propsSidebar, action: UiActionType ): propsSid
                ...state,
                Open: false
 
-           }
+         }
+      
 
        default:
           return state;

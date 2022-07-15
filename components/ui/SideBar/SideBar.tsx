@@ -13,7 +13,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import Avatar from "@mui/material/Avatar";
 import Image from "next/image";
 import Notificacion from "../../../components/Icons/Notificacion";
-import { UiContext } from "../../../context/index";
+import { UiContext } from "../../../context/Ui/index";
 
 export const SideBar = () => {
   const { openSideBarDesktop, closeSideBar, Anchor, Open } =

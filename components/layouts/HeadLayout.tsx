@@ -25,7 +25,7 @@ export const HeadLayout: FC<Props> = ({ children, title }) => {
       <nav>{breakpoints ? <MenuMobile /> : <MenuDesktop />}</nav>
 
       <SideBar />
-      <UpLoadModal />
+      {/* <UpLoadModal /> */}
 
       <main>{children}</main>
     </>

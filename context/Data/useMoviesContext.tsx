@@ -5,11 +5,7 @@ export interface movieprops {
   useMovies: (
     url: string,
     config?: SWRConfiguration
-  ) => {
-    movies: any;
-    isLoading: boolean;
-    isError: any;
-  };
+  ) => { movies: any; isLoading: boolean; isError: any };
 }
 
 export const MovieContext = createContext({} as movieprops);
@@ -23,11 +19,10 @@ const useMovies = (url: string, config: SWRConfiguration = {}) => {
   const API_KEY: string = "a89e309613186868928fd06e3181996b";
 
   const language: string = "&language=es";
-  //now_playing
+
   const { data, error } = useSWR(
     `https://api.themoviedb.org/3/movie${url}?api_key=${API_KEY}${language}`,
-    fetcher,
-    { refreshInterval: 50000 }
+    fetcher
   );
   return {
     movies: data,

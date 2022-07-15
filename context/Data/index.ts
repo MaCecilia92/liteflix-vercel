@@ -1,1 +1,1 @@
-export * from './moviesContext'
+export * from './useMoviesContext'

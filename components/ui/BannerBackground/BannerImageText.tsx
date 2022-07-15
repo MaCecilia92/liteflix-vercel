@@ -11,19 +11,18 @@ export const BannerImageText = () => {
         sx={{
           position: "absolute",
           bottom: 0,
-          right: 0,
           "@media screen and (max-width:599px)": {
             textAlign: "center",
             background:
-              "linear-gradient(0deg, rgba(0,0,0,1) 23%, rgba(34,34,34,1) 51%, rgba(36,36,36,0.022846638655462215) 67%);",
-            position: "absolute",
+              "linear-gradient(0deg, rgba(0,0,0,1) 23%, rgba(34,34,34,1) 51%, rgba(36,36,36,0.022846638655462215) 67%)",
             width: "100%",
+            right: 0,
           },
         }}>
         <Box
           sx={{
             display: "flex",
-            alignContent: "flex-star",
+            alignContent: "flex-end",
             height: "0.5rem",
             "@media screen and (max-width:599px)": {
               justifyContent: "center",

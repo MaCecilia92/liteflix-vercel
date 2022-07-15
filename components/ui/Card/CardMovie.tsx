@@ -2,8 +2,9 @@ import { FC } from "react";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import PlayIcon from "../../Icons/PlayIcon";
+import { propsdropdown } from "../Select/Dropdown";
 
-export const CardMovie: FC = () => {
+export const CardMovie: FC<propsdropdown> = ({ movieTitle }) => {
   return (
     <>
       <CardContent
@@ -24,7 +25,7 @@ export const CardMovie: FC = () => {
           variant='h2'
           component='div'
           sx={{ mt: 1, color: "white" }}>
-          House of cards
+          {movieTitle}
         </Typography>
       </CardContent>
     </>

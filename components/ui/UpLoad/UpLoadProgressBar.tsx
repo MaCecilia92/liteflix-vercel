@@ -1,8 +1,4 @@
 import { useEffect, useState } from "react";
-import { Grid } from "@material-ui/core";
-import LinearProgress, {
-  LinearProgressProps,
-} from "@mui/material/LinearProgress";
 import { UpLoadLinearProgress } from "./UpLoadLinearProgress";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -28,17 +24,6 @@ export const UpLoadProgressBar = ({
     }
     upload();
   }, []);
-
-  // useEffect(() => {
-  //   const timer = setInterval(() => {
-  //     setProgress((prevProgress) =>
-  //       prevProgress >= 100 ? 10 : prevProgress + 10
-  //     );
-  //   }, 800);
-  //   return () => {
-  //     clearInterval(timer);
-  //   };
-  // }, []);
 
   return (
     <>
