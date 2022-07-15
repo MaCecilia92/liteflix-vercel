@@ -24,12 +24,6 @@ export interface movies {
   modalsButtons?: {};
 }
 
-let currentId = 0;
-
-function getNewId() {
-  return ++currentId;
-}
-
 const modalButtons = {
   bgcolor: "#FFFFFF",
   width: 248,
@@ -43,6 +37,10 @@ const modalButtons = {
   ":disabled": {
     bgcolor: "#b8b6b6",
   },
+  ":hover": {
+    color: "white",
+    border: "1px solid white",
+  },
 };
 
 const TypographyTitle = {
@@ -55,6 +53,12 @@ const modalButtonsContainer = {
   display: "flex",
   justifyContent: "center",
 };
+
+let currentId = 0;
+
+function getNewId() {
+  return ++currentId;
+}
 
 export const UploadFile: FC<movies> = ({
   titleName,

@@ -7,6 +7,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
 import { UploadFile } from "../UpLoad/UploadFile";
 import { ContextProps } from "../../../context/Ui/index";
+import AddIcon from "@mui/icons-material/Add";
 
 const modalContainer = {
   position: "absolute" as "absolute",
@@ -55,8 +56,15 @@ export const UpLoadModal: FC<ContextProps> = (): JSX.Element => {
   const ariaLabel = { "aria-label": "description" };
 
   return (
-    <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+    <>
+      <Button
+        startIcon={<AddIcon sx={{ color: "white", width: 20, height: 20 }} />}
+        onClick={handleOpen}
+        sx={{ width: "20rem" }}>
+        <Typography sx={{ color: "white", fontSize: 22, letterSpacing: 3 }}>
+          Agregar película
+        </Typography>
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -72,6 +80,6 @@ export const UpLoadModal: FC<ContextProps> = (): JSX.Element => {
           <UploadFile />
         </Box>
       </Modal>
-    </div>
+    </>
   );
 };

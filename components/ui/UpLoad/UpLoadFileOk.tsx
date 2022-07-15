@@ -6,8 +6,6 @@ import { Typography } from "@mui/material";
 import LogoLiteflix from "../../../components/Icons/LiteflixLogo";
 import { movies } from "../../../components/ui/UpLoad/index";
 
-import { propsMovieLocal } from "../../../context/MovieLocal/index";
-
 export const UpLoadFileOk: FC<movies> = ({
   titleName,
   modalsButtons,
@@ -27,10 +25,17 @@ export const UpLoadFileOk: FC<movies> = ({
             textAlign: "center",
             margin: 5,
           }}>
-          <Typography variant='h1' sx={{ fontSize: 30 }}>
+          <Typography variant='h1' sx={{ fontSize: 30, color: "white" }}>
             ¡Felicitaciones!
           </Typography>
-          <Typography sx={{ fontSize: 20, letterSpacing: 2 }}>
+          <Typography
+            sx={{
+              fontSize: 20,
+              letterSpacing: 2,
+              color: "white",
+              mt: 2,
+              fontWeight: 200,
+            }}>
             {titleName} fue correctamente subida.
           </Typography>
         </Box>

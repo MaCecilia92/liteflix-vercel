@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useContext, FC } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -7,19 +7,47 @@ import Avatar from "@mui/material/Avatar";
 import Image from "next/image";
 import LogoLiteflix from "../../Icons/LiteflixLogo";
 import MenuSVG from "../../Icons/Menu";
+import { UiContext } from "../../../context/Ui/index";
+import { menuProps } from "./Menu";
+import Button from "@mui/material/Button";
+import { SideBar } from "../SideBar";
+import CloseIcon from "@mui/icons-material/Close";
 
-export const MenuMobile = () => {
+export const MenuMobile: FC<menuProps> = ({}) => {
+  const { openSideBarMobile, Anchor, Open } = useContext(UiContext);
+
+  const MenumobileOpen = "#242424";
+
+  const MenumobileClose = "transparent";
+
+  const MenuBackground = Open ? MenumobileOpen : MenumobileClose;
   return (
-    <AppBar position='fixed' sx={{ mt: 2 }}>
+    <AppBar
+      position='fixed'
+      sx={{
+        bgcolor: Open ? MenumobileOpen : MenumobileClose,
+        zIndex: 1,
+        pt: 2,
+      }}>
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
-          <Box sx={{ mr: 2 }}>
-            <MenuSVG />
+          <Box>
+            <Button
+              startIcon={
+                Open ? (
+                  <CloseIcon sx={{ color: "white", width: 30, height: 30 }} />
+                ) : (
+                  <MenuSVG />
+                )
+              }
+              onClick={openSideBarMobile}
+            />
+            <SideBar anchor={Anchor} open={Open} />
           </Box>
           <Box sx={{ m: "auto" }}>
             <LogoLiteflix />
           </Box>
-          <Box sx={{ ml: 2 }}>
+          <Box sx={{ ml: 3 }}>
             <Avatar>
               <Image
                 alt='User profile'

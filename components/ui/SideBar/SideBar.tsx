@@ -1,4 +1,4 @@
-import { useState, Fragment, useContext } from "react";
+import { useState, Fragment, useContext, FC } from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
@@ -14,8 +14,9 @@ import Avatar from "@mui/material/Avatar";
 import Image from "next/image";
 import Notificacion from "../../../components/Icons/Notificacion";
 import { UiContext } from "../../../context/Ui/index";
+import { menuProps } from "../Menu/Menu";
 
-export const SideBar = () => {
+export const SideBar: FC<menuProps> = ({ anchor, open }) => {
   const { openSideBarDesktop, closeSideBar, Anchor, Open } =
     useContext(UiContext);
   console.log(openSideBarDesktop);
@@ -25,19 +26,26 @@ export const SideBar = () => {
   return (
     <div>
       <Fragment>
-        <Button onClick={openSideBarDesktop}>Open Sidebar</Button>
-        <Drawer anchor={Anchor} open={Open} onClose={closeSideBar}>
+        <Drawer
+          anchor={Anchor}
+          open={Open}
+          onClose={closeSideBar}
+          sx={{
+            "@media screen and (max-width:599px)": {
+              width: "100vh",
+              top: 800,
+            },
+          }}>
           <Box
             sx={{
-              width: 761,
-              "@media screen and (max-width:599px)": {
-                width: "100vh",
-              },
+              width: 800,
+              height: "100vh",
+              bgcolor: "#242424",
             }}
             role='presentation'
             onClick={closeSideBar}
             onKeyDown={closeSideBar}>
-            <List>
+            <List sx={{ width: "100%" }}>
               <Box
                 sx={{
                   display: { xs: "none", md: "flex", sm: "flex" },
@@ -85,7 +93,9 @@ export const SideBar = () => {
                           color: "white",
                           fontWeight: 200,
                           letterSpacing: 3,
-                          pl: 6,
+                          "@media screen and (max-width:599px)": {
+                            pl: 1,
+                          },
                         },
                       }}
                     />
@@ -95,7 +105,13 @@ export const SideBar = () => {
             </List>
             <List>
               <ListItem disablePadding>
-                <ListItemButton sx={{ pl: 7 }}>
+                <ListItemButton
+                  sx={{
+                    pl: 7,
+                    "@media screen and (max-width:599px)": {
+                      pl: 2,
+                    },
+                  }}>
                   <ListItemIcon sx={{ minWidth: 26 }}>
                     <AddIcon sx={{ color: "white" }} />
                   </ListItemIcon>
@@ -125,7 +141,10 @@ export const SideBar = () => {
                         color: "white",
                         fontWeight: 200,
                         letterSpacing: 3,
-                        pl: 6,
+                        pl: 1,
+                        "@media screen and (max-width:599px)": {
+                          pl: 1,
+                        },
                       },
                     }}
                   />

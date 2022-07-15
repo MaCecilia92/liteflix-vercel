@@ -51,20 +51,23 @@ const HomePage: NextPage<propsMovieLocal> = () => {
         <Box
           sx={{
             right: 0,
-            top: 0,
+            top: 70,
             zIndex: 1,
             position: "fixed",
-            width: "500px",
-            height: "100%",
+            width: "30%",
+            height: "95%",
             overflowX: "hidden",
-            paddingTop: "90px",
+            paddingTop: "20px",
+            "::-webkit-scrollbar": {
+              display: "block",
+            },
 
             "@media screen and (max-width:599px)": {
               bgcolor: "black",
               width: "100%",
               height: "auto",
-              position: "absolute",
-              top: 710,
+              position: "relative",
+              top: -1,
               right: 0,
               display: "flex",
               flexDirection: "column",
@@ -72,12 +75,8 @@ const HomePage: NextPage<propsMovieLocal> = () => {
               alignItems: "center",
               zIndex: 4,
               paddingTop: 0,
-              "::-webkit-scrollbar": {
-                display: "block",
-              },
             },
           }}>
-          <UpLoadModal />
           <Dropdown />
         </Box>
       </Grid>

@@ -37,10 +37,22 @@ export const lightTheme = createTheme({
       },
       styleOverrides: {
         root: {
-          backgroundColor: 'white',
-          height: 60
+          backgroundColor: 'transparent',
+          height: 90,
+          zIndex: 1,
         },
       }
+    },
+
+    MuiBackdrop: {
+      styleOverrides: {
+        root: {
+          "@media screen and (max-width:599px)": {
+            backgroundColor: 'transparent',
+          },
+          
+        },
+      },
     },
 
     MuiTypography: {
@@ -82,10 +94,12 @@ export const lightTheme = createTheme({
         root: {
           textTransform: 'none',
           boxShadow: 'none',
-          borderRadius: 10,
+          padding: 10,
           ":hover": {
             backgroundColor: 'rgba(0,0,0,0.05)',
-            transition: 'all 0.3s ease-in-out'
+            transition: 'all 0.3s ease-in-out',
+            borderRadius: 0,
+            padding: 10
           }
         }
       }
@@ -142,12 +156,23 @@ export const lightTheme = createTheme({
       }
     },
 
+    MuiDrawer: {
+      styleOverrides: {
+        paper: {
+          "@media screen and (max-width:599px)": {
+            top:70,
+          },
+        }
+      }
+    },
+
+
     MuiListItem : {
       styleOverrides: {
         root: {
           flex: "0 0 0",
-          width: "15rem", 
-          paddingLeft: "41px"
+          paddingLeft: "41px",
+          width: "90%"
         }
       }
     },

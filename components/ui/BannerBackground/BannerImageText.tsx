@@ -24,6 +24,7 @@ export const BannerImageText = () => {
             display: "flex",
             alignContent: "flex-end",
             height: "0.5rem",
+            pl: 5,
             "@media screen and (max-width:599px)": {
               justifyContent: "center",
               width: "100%",
@@ -53,6 +54,12 @@ export const BannerImageText = () => {
           sx={{
             fontSize: "10rem",
             color: "#64EEBC",
+            pl: 5,
+            "@media screen and (max-width:1024px)": {
+              textAlign: "left",
+              fontSize: "5rem",
+              marginTop: "1rem",
+            },
             "@media screen and (max-width:599px)": {
               textAlign: "center",
               fontSize: "5rem",
@@ -91,7 +98,7 @@ export const BannerImageText = () => {
               fontSize: 18,
               bgcolor: "rgba(36, 36, 36, 0.5)",
               border: "1px solid rgba(255, 255, 255, 0.5)",
-              margin: 2,
+              margin: 5,
             }}>
             Mi lista
           </Button>

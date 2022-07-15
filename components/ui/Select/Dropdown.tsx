@@ -121,7 +121,14 @@ export const Dropdown: FC<propsdropdown> = ({ Listmovies }) => {
   return (
     <>
       <List>
-        <ListItem onClick={handleClickListItem}>
+        <ListItem
+          onClick={handleClickListItem}
+          sx={{
+            width: "90%",
+            "@media screen and (max-width:599px)": {
+              width: "100%",
+            },
+          }}>
           <Typography
             variant='h2'
             sx={{
@@ -132,7 +139,7 @@ export const Dropdown: FC<propsdropdown> = ({ Listmovies }) => {
             }}>
             Ver
           </Typography>
-          <ListItemText sx={{ width: "5rem" }}>
+          <ListItemText sx={{ width: "1rem" }}>
             <Typography
               sx={{
                 fontSize: "1.2rem",

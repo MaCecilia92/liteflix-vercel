@@ -7,9 +7,6 @@ import { propsdropdown } from "../Select/Dropdown";
 
 export const CardMovieSmall: FC<propsdropdown> = ({
   Listmovies,
-  results,
-  movieVote,
-  movieTitle,
 }: propsdropdown): JSX.Element => {
   const [isHovered, setIsHovered] = useState([] as any[]);
 

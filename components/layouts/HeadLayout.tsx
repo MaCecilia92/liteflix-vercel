@@ -3,8 +3,8 @@ import Head from "next/head";
 import { MenuDesktop, MenuMobile } from "../ui/Menu/index";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { SideBar } from "../../components/ui/SideBar";
-import { UpLoadModal } from "../../components/ui/UpLoadContainer";
 import Box from "@mui/material/Box";
+import { UpLoadModal, UpLoadDrawer } from "../ui/UpLoadContainer/index";
 
 interface Props {
   title: string;
@@ -22,11 +22,13 @@ export const HeadLayout: FC<Props> = ({ children, title }) => {
         <title>{title}</title>
       </Head>
 
-      <nav>{breakpoints ? <MenuMobile /> : <MenuDesktop />}</nav>
-
-      <SideBar />
-      {/* <UpLoadModal /> */}
-
+      <nav>
+        {breakpoints ? (
+          <MenuMobile anchor={undefined} open={false} />
+        ) : (
+          <MenuDesktop anchor={undefined} open={false} />
+        )}
+      </nav>
       <main>{children}</main>
     </>
   );
