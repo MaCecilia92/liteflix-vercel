@@ -142,6 +142,7 @@ export const UploadFile: FC<movies> = ({
       "image/jpeg": [".jpg", ".jpeg"],
     },
     maxSize: 500 * 1024,
+    useFsAccessApi: false
   });
 
   const handleClick = useCallback(
